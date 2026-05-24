@@ -19,9 +19,6 @@ let bgImg=null, imgOp=0.28;
 let mode='draw', color='#e8dcc0', brushSz=8;
 let strokes=[], current=null, drawing=false;
 let generated=false;
-let undoStack=[], redoStack=[];
-const MAX_HISTORY=100;
-let historyPushed=false;
 
 /* BG IMAGE */
 document.getElementById('img-input').addEventListener('change',e=>{
@@ -59,7 +56,6 @@ document.getElementById('btn-erase').addEventListener('click',()=>{
   cdraw.style.cursor='cell';
 });
 document.getElementById('btn-clear').addEventListener('click',()=>{
-  pushHistory();
   strokes=[];
   dctx.clearRect(0,0,W,H);
   octx.clearRect(0,0,W,H);
@@ -98,75 +94,16 @@ function startDraw(e){
 function moveDraw(e){
   e.preventDefault();
   if(!drawing||generated)return;
-  drawing=true;
+  const p=getPos(e);
   if(mode==='erase'){eraseAt(p);} 
-  if(!historyPushed){pushHistory(); historyPushed=true;}
-  if(mode==='erase'){eraseAt(p);} 
-  else{current={pts:[p],color:color,size:brushSz};strokes.push(current);renderStrokes();}
+  else{current.pts.push(p);renderStrokes();}
+}
 function endDraw(e){e.preventDefault();drawing=false;current=null;}
 
 function eraseAt(p){
   const r=brushSz*2.5;
-  const newStrokes=[];
-  for(const s of strokes){
-    const segs=[];
-    let cur=[];
-    for(let i=0;i<s.pts.length;i++){
-      const pt=s.pts[i];
-      const d=Math.hypot(pt.x-p.x,pt.y-p.y);
-      if(d<r){
-        if(cur.length>=2){segs.push(cur);}
-        cur=[]; // erased point, break connection
-      } else {
-        cur.push(pt);
-      }
-    }
-    if(cur.length>=2)segs.push(cur);
-    for(const seg of segs){
-      newStrokes.push({pts:seg,color:s.color,size:s.size});
-    }
-  }
-  strokes=newStrokes;
+  strokes=strokes.filter(s=>!s.pts.some(pt=>Math.hypot(pt.x-p.x,pt.y-p.y)<r));
   renderStrokes();
-}
-
-function pushHistory(){
-  // push a deep copy of strokes
-  undoStack.push(JSON.parse(JSON.stringify(strokes)));
-  if(undoStack.length>MAX_HISTORY) undoStack.shift();
-  // clear redo when new action
-  redoStack.length=0;
-  updateHistoryButtons();
-}
-
-function undo(){
-  if(undoStack.length===0) return;
-  // current state -> redo
-  redoStack.push(JSON.parse(JSON.stringify(strokes)));
-  const prev=undoStack.pop();
-  strokes=prev||[];
-  renderStrokes();
-  octx.clearRect(0,0,W,H);
-  showDrawMode();
-  updateHistoryButtons();
-}
-
-function redo(){
-  if(redoStack.length===0) return;
-  undoStack.push(JSON.parse(JSON.stringify(strokes)));
-  const next=redoStack.pop();
-  strokes=next||[];
-  renderStrokes();
-  octx.clearRect(0,0,W,H);
-  showDrawMode();
-  updateHistoryButtons();
-}
-
-function updateHistoryButtons(){
-  const bu=document.getElementById('btn-undo');
-  const br=document.getElementById('btn-redo');
-  if(bu) bu.disabled = undoStack.length===0;
-  if(br) br.disabled = redoStack.length===0;
 }
 function renderStrokes(){
   dctx.clearRect(0,0,W,H);
@@ -199,12 +136,6 @@ document.getElementById('btn-back').addEventListener('click',()=>{
   octx.clearRect(0,0,W,H);
   showDrawMode();
 });
-
-document.getElementById('btn-undo').addEventListener('click',()=>{undo();});
-document.getElementById('btn-redo').addEventListener('click',()=>{redo();});
-
-// initialize history buttons
-updateHistoryButtons();
 
 function showDrawMode(){
   generated=false;
