@@ -1,0 +1,32 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#1c3d2a;color:#e8dcc0;font-family:'IM Fell DW Pica',Georgia,serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:2rem 1rem;gap:1.2rem}
+h1{font-size:2rem;font-style:italic;letter-spacing:.05em;opacity:.9}
+.sub{font-style:italic;font-size:.8rem;opacity:.4;letter-spacing:.15em}
+.controls{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:center;width:100%;max-width:820px}
+.btn{background:transparent;border:1px solid rgba(232,220,192,.25);color:#e8dcc0;font-family:'IM Fell DW Pica',Georgia,serif;font-size:.82rem;font-style:italic;padding:.4rem .9rem;cursor:pointer;letter-spacing:.04em;transition:all .2s}
+.btn:hover{background:rgba(232,220,192,.08);border-color:rgba(232,220,192,.5)}
+.btn.active{background:rgba(232,220,192,.12);border-color:#e8dcc0}
+.btn.danger{border-color:rgba(201,112,64,.35);color:#c97040}
+.btn.danger:hover{background:rgba(201,112,64,.08)}
+.btn.go{border-color:rgba(176,144,204,.5);color:#b090cc;font-size:.9rem;padding:.5rem 1.4rem}
+.btn.go:hover{background:rgba(176,144,204,.1)}
+label.btn{display:inline-block}
+input[type=file]{display:none}
+.sep{width:1px;height:24px;background:rgba(232,220,192,.15)}
+.row{display:flex;align-items:center;gap:.5rem;font-size:.78rem;font-style:italic;opacity:.65}
+input[type=range]{-webkit-appearance:none;height:2px;background:rgba(232,220,192,.25);outline:none;width:70px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:11px;height:11px;border-radius:50%;background:#e8dcc0;cursor:pointer}
+.swatch{width:15px;height:15px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color .15s}
+.swatch.sel{border-color:#fff}
+.text-wrap{width:100%;max-width:820px;display:flex;flex-direction:column;gap:.35rem}
+.text-wrap label{font-style:italic;font-size:.75rem;opacity:.5;letter-spacing:.12em}
+textarea{background:rgba(232,220,192,.05);border:1px solid rgba(232,220,192,.18);color:#e8dcc0;font-family:'IM Fell DW Pica',Georgia,serif;font-style:italic;font-size:.9rem;padding:.65rem;resize:vertical;min-height:70px;width:100%;outline:none;transition:border-color .2s;letter-spacing:.03em;line-height:1.6}
+textarea:focus{border-color:rgba(232,220,192,.4)}
+textarea::placeholder{opacity:.3}
+.canvas-wrap{width:100%;max-width:820px;position:relative}
+.canvas-frame{width:100%;aspect-ratio:4/5;position:relative;border:1px solid rgba(232,220,192,.12)}
+canvas{position:absolute;top:0;left:0;width:100%;height:100%}
+#c-draw{cursor:crosshair}
+#c-out{pointer-events:none}
+.hint{font-style:italic;font-size:.72rem;opacity:.3;text-align:center}
+.state-label{font-style:italic;font-size:.75rem;opacity:.45;letter-spacing:.1em;text-align:center}

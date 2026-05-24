@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generador de caligramas</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1>generador de caligramas</h1>
+<p class="sub">dibuja · escribe · genera</p>
+
+<div class="controls">
+  <label class="btn">
+    <input type="file" id="img-input" accept="image/*">imagen de fondo
+  </label>
+  <div class="sep"></div>
+  <button class="btn active" id="btn-draw">pincel</button>
+  <button class="btn" id="btn-erase">borrador</button>
+  <button class="btn danger" id="btn-clear">limpiar</button>
+  <div class="sep"></div>
+  <div class="row">
+    grosor
+    <input type="range" id="brush-size" min="2" max="32" value="8">
+    <span id="bval">8</span>
+  </div>
+  <div class="sep"></div>
+  <div class="row">
+    color
+    <div class="swatch sel" style="background:#e8dcc0" data-c="#e8dcc0"></div>
+    <div class="swatch" style="background:#b090cc" data-c="#b090cc"></div>
+    <div class="swatch" style="background:#c97040" data-c="#c97040"></div>
+    <div class="swatch" style="background:#7ab89a" data-c="#7ab89a"></div>
+    <div class="swatch" style="background:#d4a0b0" data-c="#d4a0b0"></div>
+  </div>
+  <div class="sep"></div>
+  <div class="row">
+    opacidad imagen
+    <input type="range" id="img-op" min="5" max="85" value="28">
+  </div>
+</div>
+
+<div class="text-wrap">
+  <label>texto · se repetirá para llenar cada trazo</label>
+  <textarea id="poem" placeholder="escribe tu texto aquí...">gracias a la vida que me ha dado tanto · me dio dos luceros que cuando los abro perfecto distingo lo negro del blanco · y en el alto cielo su fondo estrellado · y en las multitudes al hombre que yo amo · </textarea>
+</div>
+
+<div class="controls">
+  <div class="row">
+    tamaño letra
+    <input type="range" id="fsize" min="4" max="20" value="7">
+    <span id="fval">7</span>px
+  </div>
+  <div class="sep"></div>
+  <button class="btn go" id="btn-gen">generar caligrama</button>
+  <button class="btn" id="btn-back">volver a dibujar</button>
+  <button class="btn" id="btn-dl">exportar html</button>
+</div>
+
+<p class="state-label" id="state-label">modo dibujo</p>
+
+<div class="canvas-wrap">
+  <div class="canvas-frame">
+    <canvas id="c-bg"></canvas>
+    <canvas id="c-draw"></canvas>
+    <canvas id="c-out"></canvas>
+  </div>
+</div>
+
+<p class="hint">dibuja encima de la imagen · al generar los trazos desaparecen y el texto ocupa su lugar</p>
+
+<script src="script.js"></script>
+</body>
+</html>
+</body>
+</html>
