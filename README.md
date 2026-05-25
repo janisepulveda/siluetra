@@ -1,2 +1,2 @@
 # siluetra
-pseudo librería para hacer caligramas
+pseudo bilbioteca para hacer caligramas
