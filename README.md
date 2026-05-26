@@ -1,14 +1,9 @@
 # siluetra
 
-
 https://github.com/user-attachments/assets/9cb4a9c7-2e7d-48a8-96eb-80c1551a8b6d
 
 
-Una biblioteca para p5.js para trazar siluetas con texto.
-
 ## qué es
-
-Siluetra = silueta + letra.
 
 Dibujas un trazo. Le das un texto. El texto sigue ese trazo, letra por letra, formando la silueta.
 
