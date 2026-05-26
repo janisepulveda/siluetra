@@ -1,20 +1,26 @@
 # siluetra
 
+*¿qué forma tiene una palabra?*
+
+el trazo se vuelve texto. el texto, figura. las palabras no describen la forma, la son.
+
+la composición manda. el texto es el material, no el mensaje.
+
 https://github.com/user-attachments/assets/9cb4a9c7-2e7d-48a8-96eb-80c1551a8b6d
 
-Dibujas un trazo. Le das un texto. El texto sigue ese trazo, letra por letra, formando la silueta.
-
-La composición manda. El texto es el material, no el mensaje.
 
 ## dibujador
 
-Siluetra incluye un dibujador — una herramienta visual donde puedes subir una imagen, calcar sus líneas encima, escribir tu texto y exportar el resultado como HTML con SVG incrustado. Texto real, no imagen.
+herramienta visual para dibujar con texto. puedes partir de una imagen de referencia o de un lienzo en blanco. escribe, compón y exporta como HTML con SVG incrustado.
 
 ![dibujador](assets/flores.jpg)
 
-## uso
+## flujo
 
-> documentación en desarrollo
+1. sube una imagen de referencia si quieres
+2. dibuja sobre el lienzo
+3. escribe tu texto
+4. exporta — HTML con SVG incrustado
 
 ## versión
 
