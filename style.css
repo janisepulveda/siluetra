@@ -8,16 +8,33 @@ body {
     background: #1c3d2a;
     color: #e8dcc0;
     font-family: 'IM Fell DW Pica', Georgia, serif;
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    height: 100vh
+}
+
+.sidebar {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 2rem 1rem;
-    gap: 1.2rem
+    gap: 1.2rem;
+    padding: 1.5rem 1.2rem;
+    overflow-y: auto;
+    border-right: 1px solid rgba(232, 220, 192, .08)
+}
+
+.sidebar-header {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-style: italic;
     letter-spacing: .05em;
     opacity: .9
@@ -25,8 +42,8 @@ h1 {
 
 .sub {
     font-style: italic;
-    font-size: .8rem;
-    opacity: .4;
+    font-size: .75rem;
+    opacity: .35;
     letter-spacing: .15em
 }
 
@@ -34,10 +51,7 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     gap: .6rem;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 820px
+    align-items: center
 }
 
 .btn {
@@ -93,7 +107,7 @@ input[type=file] {
 
 .sep {
     width: 1px;
-    height: 24px;
+    height: 20px;
     background: rgba(232, 220, 192, .15)
 }
 
@@ -108,6 +122,7 @@ input[type=file] {
 
 input[type=range] {
     -webkit-appearance: none;
+    appearance: none;
     height: 2px;
     background: rgba(232, 220, 192, .25);
     outline: none;
@@ -116,6 +131,7 @@ input[type=range] {
 
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
+    appearance: none;
     width: 11px;
     height: 11px;
     border-radius: 50%;
@@ -137,8 +153,6 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 .text-wrap {
-    width: 100%;
-    max-width: 820px;
     display: flex;
     flex-direction: column;
     gap: .35rem
@@ -146,9 +160,9 @@ input[type=range]::-webkit-slider-thumb {
 
 .text-wrap label {
     font-style: italic;
-    font-size: .75rem;
-    opacity: .5;
-    letter-spacing: .12em
+    font-size: .72rem;
+    opacity: .45;
+    letter-spacing: .1em
 }
 
 textarea {
@@ -160,7 +174,7 @@ textarea {
     font-size: .9rem;
     padding: .65rem;
     resize: vertical;
-    min-height: 70px;
+    min-height: 80px;
     width: 100%;
     outline: none;
     transition: border-color .2s;
@@ -176,14 +190,17 @@ textarea::placeholder {
     opacity: .3
 }
 
-.canvas-wrap {
-    width: 100%;
-    max-width: 820px;
-    position: relative
+.canvas-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    height: 100vh
 }
 
 .canvas-frame {
-    width: 100%;
+    height: 100%;
+    max-height: calc(100vh - 3rem);
     aspect-ratio: 4/5;
     position: relative;
     border: 1px solid rgba(232, 220, 192, .12)
@@ -205,17 +222,10 @@ canvas {
     pointer-events: none
 }
 
-.hint {
-    font-style: italic;
-    font-size: .72rem;
-    opacity: .3;
-    text-align: center
-}
-
 .state-label {
     font-style: italic;
-    font-size: .75rem;
-    opacity: .45;
+    font-size: .72rem;
+    opacity: .35;
     letter-spacing: .1em;
-    text-align: center
+    margin-top: auto
 }
