@@ -2,9 +2,6 @@
 
 https://github.com/user-attachments/assets/9cb4a9c7-2e7d-48a8-96eb-80c1551a8b6d
 
-
-## qué es
-
 Dibujas un trazo. Le das un texto. El texto sigue ese trazo, letra por letra, formando la silueta.
 
 La composición manda. El texto es el material, no el mensaje.
