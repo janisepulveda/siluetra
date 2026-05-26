@@ -268,6 +268,23 @@ function generate() {
   showGenMode();
 }
 
+/* EXPORT PNG */
+document.getElementById('btn-png').addEventListener('click', () => {
+  const tmp = document.createElement('canvas');
+  tmp.width = W * DPR;
+  tmp.height = H * DPR;
+  const ctx = tmp.getContext('2d');
+  ctx.drawImage(cbg, 0, 0);
+  if (!generated) ctx.drawImage(cdraw, 0, 0);
+  ctx.drawImage(cout, 0, 0);
+  tmp.toBlob(blob => {
+    const a = document.createElement('a');
+    a.download = 'caligrama.png';
+    a.href = URL.createObjectURL(blob);
+    a.click();
+  });
+});
+
 /* EXPORT HTML */
 document.getElementById('btn-dl').addEventListener('click', () => {
   const text = (document.getElementById('poem').value.trim() || 'texto · ') + ' ';
