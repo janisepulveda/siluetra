@@ -14,14 +14,14 @@ body {
 
 .layout {
     display: grid;
-    grid-template-columns: 260px 1fr;
+    grid-template-columns: 320px 1fr;
     height: 100vh
 }
 
 .sidebar {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: .8rem;
     padding: 1.5rem 1.2rem;
     overflow-y: auto;
     border-right: 1px solid rgba(232, 220, 192, .08)
@@ -152,17 +152,20 @@ input[type=range]::-webkit-slider-thumb {
     border-color: #fff
 }
 
-.text-wrap {
+.param-group {
     display: flex;
     flex-direction: column;
-    gap: .35rem
+    gap: .5rem;
+    padding-top: .8rem;
+    border-top: 1px solid rgba(232, 220, 192, .08)
 }
 
-.text-wrap label {
+.group-label {
     font-style: italic;
-    font-size: .72rem;
-    opacity: .45;
-    letter-spacing: .1em
+    font-size: .68rem;
+    opacity: .35;
+    letter-spacing: .18em;
+    text-transform: lowercase
 }
 
 textarea {
@@ -201,10 +204,13 @@ textarea::placeholder {
 .canvas-frame {
     height: 100%;
     max-height: calc(100vh - 3rem);
-    aspect-ratio: 4/5;
+    max-width: 100%;
     position: relative;
     border: 1px solid rgba(232, 220, 192, .12)
 }
+
+.canvas-frame.landscape { aspect-ratio: 5/4 }
+.canvas-frame.portrait  { aspect-ratio: 4/5 }
 
 canvas {
     position: absolute;

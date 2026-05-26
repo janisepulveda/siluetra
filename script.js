@@ -1,4 +1,4 @@
-const W=800,H=1000;
+let W=1000,H=800;
 const DPR=window.devicePixelRatio||1;
 const cbg=document.getElementById('c-bg');
 const cdraw=document.getElementById('c-draw');
@@ -41,6 +41,33 @@ function drawBg(){
   bctx.drawImage(bgImg,(W-sw)/2,(H-sh)/2,sw,sh);
   bctx.globalAlpha=1;
 }
+
+/* ORIENTATION */
+function setOrientation(landscape){
+  W=landscape?1000:800;
+  H=landscape?800:1000;
+  [cbg,cdraw,cout].forEach(c=>{c.width=W*DPR;c.height=H*DPR;});
+  [bctx,dctx,octx].forEach(c=>c.scale(DPR,DPR));
+  strokes=[];generated=false;
+  cdraw.style.display='block';
+  drawBg();
+  dctx.clearRect(0,0,W,H);
+  octx.clearRect(0,0,W,H);
+  document.getElementById('state-label').textContent='modo dibujo';
+  const frame=document.querySelector('.canvas-frame');
+  frame.classList.toggle('landscape',landscape);
+  frame.classList.toggle('portrait',!landscape);
+}
+document.getElementById('btn-landscape').addEventListener('click',()=>{
+  setOrientation(true);
+  document.getElementById('btn-landscape').classList.add('active');
+  document.getElementById('btn-portrait').classList.remove('active');
+});
+document.getElementById('btn-portrait').addEventListener('click',()=>{
+  setOrientation(false);
+  document.getElementById('btn-portrait').classList.add('active');
+  document.getElementById('btn-landscape').classList.remove('active');
+});
 
 /* CONTROLS */
 document.getElementById('btn-draw').addEventListener('click',()=>{
