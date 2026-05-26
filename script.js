@@ -15,26 +15,51 @@ const octx = cout.getContext('2d');
 bctx.fillStyle = '#1c3d2a';
 bctx.fillRect(0, 0, W, H);
 
-let bgImg = null, imgOp = 0.28;
+let bgImg = null, imgOp = 0.28, imgHidden = false;
 let mode = 'draw', color = '#e8dcc0', brushSz = 8;
 let strokes = [], current = null, drawing = false;
 let generated = false;
+
+const btnToggle = document.getElementById('btn-img-toggle');
+const btnRemove = document.getElementById('btn-img-remove');
+
+function setImgControls(hasImg) {
+  btnToggle.hidden = !hasImg;
+  btnRemove.hidden = !hasImg;
+}
 
 /* BG IMAGE */
 document.getElementById('img-input').addEventListener('change', e => {
   const f = e.target.files[0]; if (!f) return;
   const url = URL.createObjectURL(f);
   const img = new Image();
-  img.onload = () => { bgImg = img; drawBg(); };
+  img.onload = () => {
+    bgImg = img; imgHidden = false;
+    btnToggle.textContent = 'ocultar';
+    setImgControls(true);
+    drawBg();
+  };
   img.src = url;
 });
 document.getElementById('img-op').addEventListener('input', e => {
   imgOp = e.target.value / 100; drawBg();
 });
+btnToggle.addEventListener('click', () => {
+  imgHidden = !imgHidden;
+  btnToggle.textContent = imgHidden ? 'mostrar' : 'ocultar';
+  drawBg();
+});
+btnRemove.addEventListener('click', () => {
+  bgImg = null; imgHidden = false;
+  document.getElementById('img-input').value = '';
+  btnToggle.textContent = 'ocultar';
+  setImgControls(false);
+  drawBg();
+});
 function drawBg() {
   bctx.fillStyle = '#1c3d2a';
   bctx.fillRect(0, 0, W, H);
-  if (!bgImg) return;
+  if (!bgImg || imgHidden) return;
   const sc = Math.min(W / bgImg.width, H / bgImg.height);
   const sw = bgImg.width * sc, sh = bgImg.height * sc;
   bctx.globalAlpha = imgOp;
@@ -48,7 +73,8 @@ function setOrientation(landscape) {
   H = landscape ? 800 : 1000;
   [cbg, cdraw, cout].forEach(c => { c.width = W * DPR; c.height = H * DPR; });
   [bctx, dctx, octx].forEach(c => c.scale(DPR, DPR));
-  strokes = []; generated = false;
+  strokes = []; generated = false; imgHidden = false;
+  btnToggle.textContent = 'ocultar';
   cdraw.style.display = 'block';
   drawBg();
   dctx.clearRect(0, 0, W, H);
