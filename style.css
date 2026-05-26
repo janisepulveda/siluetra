@@ -177,7 +177,7 @@ textarea {
     font-size: .9rem;
     padding: .65rem;
     resize: vertical;
-    min-height: 80px;
+    min-height: 135px;
     width: 100%;
     outline: none;
     transition: border-color .2s;
