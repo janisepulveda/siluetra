@@ -162,9 +162,9 @@ input[type=range]::-webkit-slider-thumb {
 
 .group-label {
     font-style: italic;
-    font-size: .68rem;
-    opacity: .35;
-    letter-spacing: .18em;
+    font-size: .82rem;
+    opacity: .55;
+    letter-spacing: .15em;
     text-transform: lowercase
 }
 
@@ -209,8 +209,13 @@ textarea::placeholder {
     border: 1px solid rgba(232, 220, 192, .12)
 }
 
-.canvas-frame.landscape { aspect-ratio: 5/4 }
-.canvas-frame.portrait  { aspect-ratio: 4/5 }
+.canvas-frame.landscape {
+    aspect-ratio: 5/4
+}
+
+.canvas-frame.portrait {
+    aspect-ratio: 4/5
+}
 
 canvas {
     position: absolute;

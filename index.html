@@ -1,101 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>siluetra</title>
-<link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>siluetra</title>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="layout">
+  <div class="layout">
 
-  <aside class="sidebar">
-    <div class="sidebar-header">
-      <h1>siluetra</h1>
-      <p class="sub">dibuja · escribe · genera</p>
-    </div>
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1>siluetra</h1>
+        <p class="sub">dibuja · escribe · genera</p>
+      </div>
 
-    <div class="param-group">
-      <span class="group-label">lienzo</span>
-      <div class="controls">
-        <button class="btn active" id="btn-landscape">horizontal</button>
-        <button class="btn" id="btn-portrait">vertical</button>
-      </div>
-      <div class="controls">
-        <label class="btn">
-          <input type="file" id="img-input" accept="image/*">imagen de referencia
-        </label>
-      </div>
-      <div class="controls">
-        <div class="row">
-          opacidad
-          <input type="range" id="img-op" min="5" max="85" value="28">
+      <div class="param-group">
+        <span class="group-label">lienzo</span>
+        <div class="controls">
+          <button class="btn active" id="btn-landscape">horizontal</button>
+          <button class="btn" id="btn-portrait">vertical</button>
+        </div>
+        <div class="controls">
+          <label class="btn">
+            <input type="file" id="img-input" accept="image/*">imagen de referencia
+          </label>
+        </div>
+        <div class="controls">
+          <div class="row">
+            opacidad
+            <input type="range" id="img-op" min="5" max="85" value="28">
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="param-group">
-      <span class="group-label">pincel</span>
-      <div class="controls">
-        <button class="btn active" id="btn-draw">dibujar</button>
-        <button class="btn" id="btn-erase">borrar</button>
-        <button class="btn danger" id="btn-clear">limpiar todo</button>
-      </div>
-      <div class="controls">
-        <div class="row">
-          grosor
-          <input type="range" id="brush-size" min="2" max="32" value="8">
-          <span id="bval">8</span>
+      <div class="param-group">
+        <span class="group-label">pincel</span>
+        <div class="controls">
+          <button class="btn active" id="btn-draw">dibujar</button>
+          <button class="btn" id="btn-erase">borrar</button>
+          <button class="btn danger" id="btn-clear">limpiar todo</button>
+        </div>
+        <div class="controls">
+          <div class="row">
+            grosor
+            <input type="range" id="brush-size" min="2" max="32" value="8">
+            <span id="bval">8</span>
+          </div>
+        </div>
+        <div class="controls">
+          <div class="row">
+            color
+            <div class="swatch sel" style="background:#e8dcc0" data-c="#e8dcc0"></div>
+            <div class="swatch" style="background:#b090cc" data-c="#b090cc"></div>
+            <div class="swatch" style="background:#c97040" data-c="#c97040"></div>
+            <div class="swatch" style="background:#7ab89a" data-c="#7ab89a"></div>
+            <div class="swatch" style="background:#d4a0b0" data-c="#d4a0b0"></div>
+          </div>
         </div>
       </div>
-      <div class="controls">
-        <div class="row">
-          color
-          <div class="swatch sel" style="background:#e8dcc0" data-c="#e8dcc0"></div>
-          <div class="swatch" style="background:#b090cc" data-c="#b090cc"></div>
-          <div class="swatch" style="background:#c97040" data-c="#c97040"></div>
-          <div class="swatch" style="background:#7ab89a" data-c="#7ab89a"></div>
-          <div class="swatch" style="background:#d4a0b0" data-c="#d4a0b0"></div>
+
+      <div class="param-group">
+        <span class="group-label">texto</span>
+        <textarea id="poem"
+          placeholder="escribe tu texto aquí...">para mi tristeza, violeta azul · clavelina roja pa mi pasión · y para saber si me corresponde · deshojo un blanco manzanillón · si me quiere mucho, poquito o nada · tranquilo queda mi corazón · </textarea>
+        <div class="controls">
+          <div class="row">
+            tamaño
+            <input type="range" id="fsize" min="4" max="20" value="7">
+            <span id="fval">7</span>px
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="param-group">
-      <span class="group-label">texto</span>
-      <textarea id="poem" placeholder="escribe tu texto aquí...">para mi tristeza, violeta azul · clavelina roja pa mi pasión · y para saber si me corresponde · deshojo un blanco manzanillón · si me quiere mucho, poquito o nada · tranquilo queda mi corazón · </textarea>
-      <div class="controls">
-        <div class="row">
-          tamaño
-          <input type="range" id="fsize" min="4" max="20" value="7">
-          <span id="fval">7</span>px
+      <div class="param-group">
+        <span class="group-label">resultado</span>
+        <div class="controls">
+          <button class="btn go" id="btn-gen">generar</button>
+          <button class="btn" id="btn-back">volver a dibujar</button>
+          <button class="btn" id="btn-dl">exportar html</button>
         </div>
       </div>
-    </div>
 
-    <div class="param-group">
-      <span class="group-label">resultado</span>
-      <div class="controls">
-        <button class="btn go" id="btn-gen">generar</button>
-        <button class="btn" id="btn-back">volver a dibujar</button>
-        <button class="btn" id="btn-dl">exportar html</button>
+      <p class="state-label" id="state-label">modo dibujo</p>
+    </aside>
+
+    <div class="canvas-area">
+      <div class="canvas-frame landscape">
+        <canvas id="c-bg"></canvas>
+        <canvas id="c-draw"></canvas>
+        <canvas id="c-out"></canvas>
       </div>
     </div>
 
-    <p class="state-label" id="state-label">modo dibujo</p>
-  </aside>
-
-  <div class="canvas-area">
-    <div class="canvas-frame landscape">
-      <canvas id="c-bg"></canvas>
-      <canvas id="c-draw"></canvas>
-      <canvas id="c-out"></canvas>
-    </div>
   </div>
 
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
