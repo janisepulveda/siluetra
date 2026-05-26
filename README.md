@@ -28,4 +28,4 @@ v0.1 — texto sobre trazo, exportación SVG
 
 ## licencia
 
-MIT
+MIT — libre para usar, modificar y redistribuir con atribución.
